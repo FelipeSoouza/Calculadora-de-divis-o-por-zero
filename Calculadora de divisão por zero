@@ -1,0 +1,43 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        try
+        {
+            Console.WriteLine("Calculadora de Divisão");
+            Console.WriteLine("-------------------------------------------");
+
+            Console.Write("Digite um número: ");
+            double dividendo = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Digite outro numero: ");
+            double divisor = Convert.ToDouble(Console.ReadLine());
+
+            double resultado = Dividir(dividendo, divisor);
+            Console.WriteLine($"Resultado da divisão: {resultado}");
+        }
+        catch (DivideByZeroException)
+        {
+            Console.WriteLine("Erro: Divisão por zero!");
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Erro: Entrada inválida!");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ocorreu um erro: {ex.Message}");
+        }
+    }
+
+    static double Dividir(double dividendo, double divisor)
+    {
+        if (divisor == 0)
+        {
+            throw new DivideByZeroException();
+        }
+        return dividendo / divisor;
+    }
+}
